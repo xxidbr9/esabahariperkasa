@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import ArrowBtn from '../components/svg/ArrowBtn'
 import { motion } from 'framer-motion'
 import twcolor from 'tailwindcss/colors'
+import BrandComp from '../components/BrandComp'
 
 const HomePage = () => {
 
@@ -21,15 +22,15 @@ const HomePage = () => {
       </Helmet>
       <Navbar />
       <main className=''>
+
         <section data-id="hero" className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0'>
           <div className='flex flex-col'>
             <div className='flex flex-col laptop:text-6xl mobile:text-2xl font-bold gap-y-3'>
               <h1>Reliable & Express Logistic</h1>
               <h1>Solution to save your Time!</h1>
             </div>
-            <div className='mobile:pt-20 laptop:pt-10 text-xl font-medium flex items-center gap-x-4'>
-              <span>More about us</span>
-              <ArrowBtn fill={twcolor.neutral[800]} />
+            <div className='mobile:pt-20 laptop:pt-0'>
+              <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} />
             </div>
           </div>
         </section>
@@ -44,12 +45,65 @@ const HomePage = () => {
             </CardFeature>
           ))}
         </section>
-        <section>
 
+
+        <section className=''>
+          <div className='laptop:grid laptop:grid-cols-12 laptop:container mx-auto laptop:py-20 mobile:py-10 gap-x-5 mobile:px-4 laptop:px-0'>
+            <div className='col-span-6 h-[920px] bg-cover w-auto mobile:hidden laptop:block' style={{ backgroundImage: "url(https://source.unsplash.com/random/2)" }} />
+            <div className='col-span-6 py-10 '>
+              <div className='flex flex-col laptop:gap-y-6 mobile:gap-y-1 laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>
+                <h1>Profesional</h1>
+                <h1>Shipping Agency </h1>
+                <h1>With Affordable Price,</h1>
+                <h1>And Certified Forwader</h1>
+              </div>
+              <div className='laptop:mt-72 mobile:mt-10'>
+                <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} />
+              </div>
+            </div>
+            <div className='mobile:hidden laptop:block laptop:absolute w-full laptop:mt-[400px]'>
+              <div className='laptop:grid grid-cols-6 content-center w-full'>
+                <div className="col-start-2 col-span-3 bg-white laptop:p-9 flex flex-col gap-y-6">
+                  <BrandComp />
+                  <p className='text-lg'>
+                    We believes that it is essential to act with integrity in all its activities, to treat all its employees and customers in a fair and respectful manner. The company aims to remain the first choice of its customers.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
+
+        <section className='mobile:'>
+          <div className='mobile:px-4 mobile:py-10 laptop:py-0 laptop:px-0 laptop:container mx-auto laptop:grid grid-cols-12'>
+            <div className='col-span-6 flex flex-col gap-y-8'>
+              <div className='flex flex-col gap-y-3'>
+                <h1 className='laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>What we do?</h1>
+                <p className='laptop:text-lg'>
+                  We believes that it is essential to act with integrity in all its activities, to treat all its employees and customers in a fair and respectful manner. The company aims to remain the first choice of its customers.
+                </p>
+              </div>
+              <div className='mobile:pt-10 laptop:pt-0'>
+                <ButtonArrow color={twcolor.neutral[800]} text={"All services"} />
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
       {/* <div>Haha</div> */}
     </React.Fragment>
+  )
+}
+
+
+const ButtonArrow = ({ text, color, ...props }) => {
+
+  return (
+    <div className='mobile:pt-0 laptop:pt-10 text-xl font-medium flex items-center gap-x-4'>
+      <span style={{ color: color }}>{text}</span>
+      <ArrowBtn fill={color} />
+    </div>
   )
 }
 
