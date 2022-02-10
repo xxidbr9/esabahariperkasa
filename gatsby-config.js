@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/esabahariperkasa",
   siteMetadata: {
     title: "javatirtamaritim.co.id",
   },
