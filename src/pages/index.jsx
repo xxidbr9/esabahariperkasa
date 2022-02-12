@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { forwardRef, useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import BRAND_META_TITLE from '../constants/brand.constant'
 import Navbar from '../components/Navbar'
@@ -11,14 +11,48 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import withMainContext, { MainContext } from '../context/Main.context'
 import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai'
 import { GrLinkedinOption } from 'react-icons/gr'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import useLoadHandler from '../hooks/useLoad'
+
+
+const DELAY = .5 * 3
 
 const HomePage = () => {
-
+  const [isDomLoaded, setIsDomLoaded] = useState(true) //  change to true
+  const { onLoad, percentage, ref } = useLoadHandler()
+  const [isLoading, setIsLoading] = useState(true)
   const services = [
-    { title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
-    { title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },
-    { title: "Contact", buttonText: "Contact Us", bgImage: "https://source.unsplash.com/random/hero_3", child: "Looking for an International container shipping companies to deliver your container?", }
+    { id: 1, title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
+    { id: 2, title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },
+    { id: 3, title: "Contact", buttonText: "Contact Us", bgImage: "https://source.unsplash.com/random/hero_3", child: "Looking for an International container shipping companies to deliver your container?", }
   ]
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsDomLoaded(false)
+      window.scrollTo({ behavior: "auto", top: 0 })
+      window.document.body.classList.add("overflow-hidden")
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isDomLoaded) {
+      setTimeout(() => {
+        window.document.body.classList.remove("overflow-hidden")
+      }, DELAY * 1000)
+    }
+  }, [isDomLoaded])
+
+  useEffect(() => {
+    if (percentage >= 100) {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 1500)
+    }
+  }, [percentage])
+
+
 
   return (
     <React.Fragment>
@@ -26,26 +60,103 @@ const HomePage = () => {
         <title>{BRAND_META_TITLE}</title>
       </Helmet>
       <Navbar />
-      <main className=''>
+      {isDomLoaded && <Loader />}
+      {/* {isLoading && <Loader percentage={percentage} />} */}
 
-        <section data-id="hero" className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0'>
+      <main className=''>
+        <Overlay className="bg-black">
+          <div className='laptop:container mx-auto laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 relative bg-black' style={{
+            zIndex: 1,
+            mixBlendMode: "screen",
+          }}>
+            <div className='flex flex-col w-full h-full' >
+              <div className='flex flex-col laptop:text-6xl mobile:text-2xl font-bold gap-y-3 '
+              >
+                <div className='overflow-hidden'>
+                  <motion.h1
+                    className='text-white'
+                    initial={{
+                      y: 100,
+                    }}
+                    animate={{
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: .5
+                    }}
+                  >
+                    Reliable & Express Logistic
+                  </motion.h1>
+                </div>
+                <div className='overflow-hidden'>
+                  <motion.h1
+                    className='text-white'
+                    initial={{
+                      y: 100,
+                    }}
+                    animate={{
+                      y: 0,
+                    }}
+                    transition={{
+                      duration: .5,
+                      delay: .15
+                    }}
+                  >
+                    Solution to save your Time!
+                  </motion.h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Overlay>
+
+        <section data-id="hero" className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 bg-white relative'
+          style={{
+            mixBlendMode: "screen",
+            zIndex: 10
+          }}
+        >
           <div className='flex flex-col'>
-            <div className='flex flex-col laptop:text-6xl mobile:text-2xl font-bold gap-y-3'>
-              <h1>Reliable & Express Logistic</h1>
-              <h1>Solution to save your Time!</h1>
+            <div className='flex flex-col laptop:text-6xl mobile:text-2xl font-bold gap-y-3 '
+            >
+              <div className='overflow-hidden'>
+                <h1
+                  className='text-white'
+                  style={{
+                    mixBlendMode: "difference",
+                  }}
+                >
+                  Reliable & Express Logistic
+                </h1>
+              </div>
+              <div className='overflow-hidden '>
+                <h1
+                  className='text-white '
+                  style={{
+                    mixBlendMode: "difference",
+                  }}
+                >
+                  Solution to save your Time!
+                </h1>
+              </div>
             </div>
             <div className='mobile:pt-20 laptop:pt-0'>
               <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} />
             </div>
           </div>
         </section>
+
         <section className='w-full flex laptop:flex-row mobile:flex-col h-auto'>
           {services.map((item, _index) => (
             <CardFeature
+              id={item.id}
               key={`hero-${_index}`}
               buttonText={item.buttonText}
               bgImage={item.bgImage}
-              title={item.title}>
+              title={item.title}
+              ref={ref}
+              onLoad={onLoad}
+            >
               {item.child}
             </CardFeature>
           ))}
@@ -54,7 +165,7 @@ const HomePage = () => {
 
         <section className=''>
           <div className='laptop:grid laptop:grid-cols-12 laptop:container mx-auto laptop:py-20 mobile:py-10 gap-x-5 mobile:px-4 laptop:px-0'>
-            <img src={`https://source.unsplash.com/random/2`} className='col-span-6 h-[920px] bg-cover w-full mobile:hidden object-cover laptop:block' />
+            <img src={`https://source.unsplash.com/random/2`} className='col-span-6 h-[920px] bg-cover w-full mobile:hidden object-cover laptop:block' alt='about' />
             <div className='col-span-6 py-10 '>
               <div className='flex flex-col laptop:gap-y-6 mobile:gap-y-1 laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>
                 <h1>Profesional</h1>
@@ -142,6 +253,36 @@ const HomePage = () => {
   )
 }
 
+const Overlay = (props) => {
+  return (
+    <motion.div className={'absolute w-screen h-screen' + " " + props.className}
+      style={{
+        zIndex: 999,
+      }}
+      animate={{
+        overflow: "hidden",
+        height: 0,
+        paddingTop: 0,
+        paddingBottom: 0
+      }}
+      transition={{
+        delay: 1.2,
+        duration: .5
+      }}
+    >
+      {props.children}
+    </motion.div>
+  )
+}
+
+const Loader = ({ percentage, ...props }) => {
+
+  return (
+    <div className='flex items-center justify-center text-white font-medium text-lg bg-black absolute w-screen h-screen' style={{ zIndex: 99 }}>
+      Loading {percentage !== null ? `${percentage}%` : "..."}
+    </div>
+  )
+}
 
 const Footer = () => {
   return (
@@ -235,7 +376,7 @@ const CardService = ({ title, children, id, ...props }) => {
 
   return (
     <div className='w-full laptop:px-8 flex flex-col gap-y-4'>
-      <img src={`https://source.unsplash.com/random/${id}`} className='bg-cover w-full h-[480px] object-cover' />
+      <img src={`https://source.unsplash.com/random/${id}`} className='bg-cover w-full h-[480px] object-cover' alt={title} />
       <span className='text-lg font-medium'>
         {title}
       </span>
@@ -243,10 +384,28 @@ const CardService = ({ title, children, id, ...props }) => {
   )
 }
 
-const CardFeature = ({ title, children, buttonText, bgImage, ...props }) => {
+const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
   return (
     <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden' + props.className} >
-      <img src={`${bgImage}`} alt="" sizes="" srcset="" className='object-cover w-full h-full object-center absolute overflow-hidden' />
+      <motion.div className='bg-black absolute w-full h-full'
+        style={{
+          zIndex: 5 * id
+        }}
+        animate={{
+          width: 0,
+        }}
+        transition={{
+          delay: DELAY + (.1 * id),
+          ease: "easeInOut",
+          duration: .5,
+        }}
+
+      />
+      <img src={bgImage} className='object-cover w-full h-full object-center absolute overflow-hidden'
+        onLoad={onLoad}
+        ref={ref}
+        alt={title}
+      />
       <div className='absolute bg-neutral-800 w-full h-full bg-opacity-60 laptop:p-10 mobile:px-4 mobile:py-12 text-white flex flex-col laptop:justify-between laptop:gap-0 mobile:gap-y-8'>
         <div className='flex flex-col gap-y-3'>
           <span className='text-xl'>
@@ -265,7 +424,7 @@ const CardFeature = ({ title, children, buttonText, bgImage, ...props }) => {
       </div>
     </motion.div>
   )
-}
+})
 
 
 export default withMainContext(HomePage)
