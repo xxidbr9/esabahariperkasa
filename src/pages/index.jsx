@@ -112,7 +112,7 @@ const HomePage = () => {
 
         <section data-id="hero" className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 bg-white relative'
           style={{
-            mixBlendMode: "screen",
+            // mixBlendMode: "screen",
             zIndex: 10
           }}
         >
@@ -121,9 +121,9 @@ const HomePage = () => {
             >
               <div className='overflow-hidden'>
                 <h1
-                  className='text-white'
+                  className='text-black'
                   style={{
-                    mixBlendMode: "difference",
+                    // mixBlendMode: "difference",
                   }}
                 >
                   Reliable & Express Logistic
@@ -131,9 +131,9 @@ const HomePage = () => {
               </div>
               <div className='overflow-hidden '>
                 <h1
-                  className='text-white '
+                  className='text-black '
                   style={{
-                    mixBlendMode: "difference",
+                    // mixBlendMode: "difference",
                   }}
                 >
                   Solution to save your Time!
