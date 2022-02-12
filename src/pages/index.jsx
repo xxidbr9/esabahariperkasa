@@ -9,6 +9,8 @@ import BrandComp from '../components/BrandComp'
 import Brand from '../components/svg/Brand'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import withMainContext, { MainContext } from '../context/Main.context'
+import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai'
+import { GrLinkedinOption } from 'react-icons/gr'
 
 const HomePage = () => {
 
@@ -52,7 +54,7 @@ const HomePage = () => {
 
         <section className=''>
           <div className='laptop:grid laptop:grid-cols-12 laptop:container mx-auto laptop:py-20 mobile:py-10 gap-x-5 mobile:px-4 laptop:px-0'>
-            <div className='col-span-6 h-[920px] bg-cover w-auto mobile:hidden laptop:block' style={{ backgroundImage: "url(https://source.unsplash.com/random/2)" }} />
+            <img src={`https://source.unsplash.com/random/2`} className='col-span-6 h-[920px] bg-cover w-full mobile:hidden object-cover laptop:block' />
             <div className='col-span-6 py-10 '>
               <div className='flex flex-col laptop:gap-y-6 mobile:gap-y-1 laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>
                 <h1>Profesional</h1>
@@ -60,7 +62,7 @@ const HomePage = () => {
                 <h1>With Affordable Price,</h1>
                 <h1>And Certified Forwader</h1>
               </div>
-              <div className='laptop:mt-72 mobile:mt-10'>
+              <div className='laptop:mt-72 mobile:hidden laptop:block'>
                 <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} />
               </div>
             </div>
@@ -91,6 +93,9 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+            <div className='laptop:hidden mobile:block mobile:pt-6'>
+              <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} />
+            </div>
           </div>
         </section>
 
@@ -110,18 +115,81 @@ const HomePage = () => {
           </div>
           <div className='laptop:mt-10'>
             <ListServices />
-            <div className='laptop:hidden mobile:px-4 laptop:px-0 mx-auto mt-5'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"All services"}/>
+            <div className='laptop:hidden mobile:px-4 laptop:px-0 mx-auto mt-8'>
+              <ButtonArrow color={twcolor.neutral[800]} text={"All services"} />
             </div>
           </div>
         </section>
-
+        <section>
+          <div className="h-screen bg-cover w-full" style={{
+            background:
+              "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(https://source.unsplash.com/random/gradient_1)",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}>
+            <div className='flex justify-center items-center flex-col h-full w-full tracking-widest text-white font-bold laptop:text-9xl mobile:text-4xl' style={{
+              WebkitTextStroke: "3px",
+              WebkitTextFillColor: "transparent"
+            }}>
+              <h1 className=''>ESA BAHARI</h1>
+              <h1>PERKASA</h1>
+            </div>
+          </div>
+        </section>
       </main>
-      {/* <div>Haha</div> */}
+      <Footer />
     </React.Fragment>
   )
 }
 
+
+const Footer = () => {
+  return (
+    <footer footer className='bg-black py-10' >
+      <div className='laptop:container text-white mx-auto laptop:grid laptop:grid-cols-12 mobile:px-4 laptop:px-0'>
+        <div className='col-start-3 col-span-8 flex laptop:justify-center flex-col laptop:items-center laptop:gap-y-10'>
+          <div className='flex laptop:flex-col mobile:gap-x-4 laptop:gap-x-0 laptop:justify-center laptop:items-center gap-y-4 w-full'>
+            <span className='w-14 h-14'>
+              <Brand fill={twcolor.white} />
+            </span>
+            <div className='font-medium text-xl text-center'>
+              <span className='mobile:hidden laptop:block'>
+                Esa Bahari Perkasa
+              </span>
+              <div className='mobile:flex flex-col items-start laptop:hidden'>
+                <span>
+                  Esa Bahari
+                </span>
+                <span>
+                  Perkasa
+                </span>
+              </div>
+            </div>
+          </div>
+          <ul className='flex laptop:justify-center gap-x-10 laptop:items-center text-neutral-400 mobile:flex-col laptop:flex-row mobile:gap-y-4 laptop:gap-y-0 mobile:py-8 laptop:py-0'>
+            <li className='hover:text-white transition-all duration-150'><a href="./">Home</a></li>
+            <li className='hover:text-white transition-all duration-150'><a href="./services">Services</a></li>
+            <li className='hover:text-white transition-all duration-150'><a href="./about">About</a></li>
+            <li className='hover:text-white transition-all duration-150'><a href="./contact">Contact</a></li>
+          </ul>
+          <div className='w-full flex flex-col gap-y-4 text-neutral-400'>
+            <hr className='border h-auto w-full border-neutral-500' />
+            <div className='w-full flex laptop:flex-row laptop:justify-between laptop:items-center mobile:flex-col-reverse mobile:gap-y-4 laptop:gap-y-0'>
+              <span className='text-sm'>
+                © 2022 xxidbr9. All rights reserved.
+              </span>
+              <div className='flex flex-row gap-x-2'>
+                <AiOutlineInstagram size={24} />
+                <GrLinkedinOption size={24} />
+                <AiFillFacebook size={24} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
 
 const ButtonArrow = ({ text, color, ...props }) => {
 
@@ -138,7 +206,14 @@ const ListServices = () => {
   const { breakpoint } = useContext(MainContext)
   const isMobile = (breakpoint === "mobile" || breakpoint === "tablet")
   const preview = isMobile ? 1.2 : 3
-  const spaceBetween = isMobile ? 12 : 40
+  const spaceBetween = isMobile ? 12 : 0
+
+  const services = [
+    { id: "1", title: "Ship Agency", },
+    { id: "2", title: "Ship Chandler/Provision", },
+    { id: "3", title: "Ship Chartering", },
+  ]
+
   return (
     <Swiper
       spaceBetween={spaceBetween}
@@ -147,25 +222,31 @@ const ListServices = () => {
       centeredSlides
       pagination={false}
     >
-      <SwiperSlide><CardService id={"1"} /></SwiperSlide>
-      <SwiperSlide><CardService id={"2"} /></SwiperSlide>
-      <SwiperSlide><CardService id={"3"} /></SwiperSlide>
-      <SwiperSlide><CardService id={"4"} /></SwiperSlide>
+      {services.map((service, _index) => (
+        <SwiperSlide key={_index}>
+          <CardService id={service.id} title={service.title} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   )
 }
 
 const CardService = ({ title, children, id, ...props }) => {
-  return (
-    <div className='bg-cover h-[480px]' style={{ backgroundImage: `url(https://source.unsplash.com/random/idk_${props.id})` }}>
 
+  return (
+    <div className='w-full laptop:px-8 flex flex-col gap-y-4'>
+      <img src={`https://source.unsplash.com/random/${id}`} className='bg-cover w-full h-[480px] object-cover' />
+      <span className='text-lg font-medium'>
+        {title}
+      </span>
     </div>
   )
 }
 
 const CardFeature = ({ title, children, buttonText, bgImage, ...props }) => {
   return (
-    <motion.div className={'w-full h-[50vh] object-cover bg-center relative ' + props.className} style={{ backgroundImage: `url(${bgImage})` }}>
+    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden' + props.className} >
+      <img src={`${bgImage}`} alt="" sizes="" srcset="" className='object-cover w-full h-full object-center absolute overflow-hidden' />
       <div className='absolute bg-neutral-800 w-full h-full bg-opacity-60 laptop:p-10 mobile:px-4 mobile:py-12 text-white flex flex-col laptop:justify-between laptop:gap-0 mobile:gap-y-8'>
         <div className='flex flex-col gap-y-3'>
           <span className='text-xl'>

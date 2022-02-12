@@ -4,7 +4,7 @@ import Brand from '../components/svg/Brand'
 
 const BrandComp = () => {
   return (
-    <div data-id="brand" className='flex gap-x-4 items-center text-xl font-medium text-neutral-800'>
+    <a href='/' data-id="brand" className='flex gap-x-4 items-center text-xl font-medium text-neutral-800'>
       <Brand fill={twcolor.neutral[800]}
         className='laptop:w-14 mobile:w-8 mobile:h-8 laptop:h-14'
       />
@@ -15,7 +15,7 @@ const BrandComp = () => {
           Perkasa
         </span>
       </div>
-    </div>
+    </a>
   )
 }
 

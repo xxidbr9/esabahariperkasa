@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import { createBreakpoint } from "react-use";
 
 export const MainContext = createContext(null);
