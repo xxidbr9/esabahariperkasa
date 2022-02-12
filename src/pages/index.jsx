@@ -16,7 +16,7 @@ import { useEffect } from 'react'
 import useLoadHandler from '../hooks/useLoad'
 
 
-const DELAY = .5 * 3
+const DELAY = .5 * 2 + .8
 
 const HomePage = () => {
   const [isDomLoaded, setIsDomLoaded] = useState(true) //  change to true
@@ -82,7 +82,7 @@ const HomePage = () => {
                       y: 0,
                     }}
                     transition={{
-                      duration: .5
+                      duration: .6
                     }}
                   >
                     Reliable & Express Logistic
@@ -98,7 +98,7 @@ const HomePage = () => {
                       y: 0,
                     }}
                     transition={{
-                      duration: .5,
+                      duration: .6,
                       delay: .15
                     }}
                   >
@@ -112,7 +112,6 @@ const HomePage = () => {
 
         <section data-id="hero" className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 bg-white relative'
           style={{
-            // mixBlendMode: "screen",
             zIndex: 10
           }}
         >
@@ -123,7 +122,6 @@ const HomePage = () => {
                 <h1
                   className='text-black'
                   style={{
-                    // mixBlendMode: "difference",
                   }}
                 >
                   Reliable & Express Logistic
@@ -132,9 +130,6 @@ const HomePage = () => {
               <div className='overflow-hidden '>
                 <h1
                   className='text-black '
-                  style={{
-                    // mixBlendMode: "difference",
-                  }}
                 >
                   Solution to save your Time!
                 </h1>
@@ -267,7 +262,7 @@ const Overlay = (props) => {
       }}
       transition={{
         delay: 1.2,
-        duration: .5
+        duration: .8
       }}
     >
       {props.children}
@@ -386,8 +381,8 @@ const CardService = ({ title, children, id, ...props }) => {
 
 const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
   return (
-    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden' + props.className} >
-      <motion.div className='bg-black absolute w-full h-full'
+    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden' + " " + props.className} >
+      <motion.div className='bg-black absolute w-full h-full overflow-hidden'
         style={{
           zIndex: 5 * id
         }}
@@ -395,18 +390,29 @@ const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgIma
           width: 0,
         }}
         transition={{
-          delay: DELAY + (.1 * id),
+          delay: DELAY + (.1 * id + .2),
           ease: "easeInOut",
           duration: .5,
         }}
 
       />
-      <img src={bgImage} className='object-cover w-full h-full object-center absolute overflow-hidden'
+      <motion.img src={bgImage} className='object-cover w-full h-full object-center absolute'
         onLoad={onLoad}
         ref={ref}
         alt={title}
+        initial={{
+          scale: 1.3,
+        }}
+        animate={{
+          scale: 1
+        }}
+        transition={{
+          delay: DELAY + (.1 * id + .4),
+          ease: "easeOut",
+          duration: .3,
+        }}
       />
-      <div className='absolute bg-neutral-800 w-full h-full bg-opacity-60 laptop:p-10 mobile:px-4 mobile:py-12 text-white flex flex-col laptop:justify-between laptop:gap-0 mobile:gap-y-8'>
+      <div className='absolute overflow-hidden bg-neutral-800 w-full h-full bg-opacity-60 laptop:p-10 mobile:px-4 mobile:py-12 text-white flex flex-col laptop:justify-between laptop:gap-0 mobile:gap-y-8'>
         <div className='flex flex-col gap-y-3'>
           <span className='text-xl'>
             {title}

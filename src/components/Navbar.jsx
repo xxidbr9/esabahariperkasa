@@ -11,11 +11,11 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
   const { y } = useWindowScroll()
 
   const _handleToggle = useCallback(() => {
-    // if (isActive) {
-    //   window.document.body.classList.remove("overflow-hidden")
-    // } else {
-    //   window.document.body.classList.add("overflow-hidden")
-    // }
+    if (isActive) {
+      window.document.body.classList.remove("overflow-hidden")
+    } else {
+      window.document.body.classList.add("overflow-hidden")
+    }
     setIsActive(!isActive)
   }, [isActive])
 
