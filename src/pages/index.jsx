@@ -9,11 +9,11 @@ import BrandComp from '../components/BrandComp'
 import Brand from '../components/svg/Brand'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import withMainContext, { MainContext } from '../context/Main.context'
-import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai'
-import { GrLinkedinOption } from 'react-icons/gr'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import useLoadHandler from '../hooks/useLoad'
+import Footer from '../components/Footer'
+import Overlay from '../components/Overlay'
 
 
 const DELAY = .5 * 2 + .8
@@ -248,27 +248,7 @@ const HomePage = () => {
   )
 }
 
-const Overlay = (props) => {
-  return (
-    <motion.div className={'absolute w-screen h-screen' + " " + props.className}
-      style={{
-        zIndex: 999,
-      }}
-      animate={{
-        overflow: "hidden",
-        height: 0,
-        paddingTop: 0,
-        paddingBottom: 0
-      }}
-      transition={{
-        delay: 1.2,
-        duration: .8
-      }}
-    >
-      {props.children}
-    </motion.div>
-  )
-}
+
 
 const Loader = ({ percentage, ...props }) => {
 
@@ -279,53 +259,6 @@ const Loader = ({ percentage, ...props }) => {
   )
 }
 
-const Footer = () => {
-  return (
-    <footer footer className='bg-black py-10' >
-      <div className='laptop:container text-white mx-auto laptop:grid laptop:grid-cols-12 mobile:px-4 laptop:px-0'>
-        <div className='col-start-3 col-span-8 flex laptop:justify-center flex-col laptop:items-center laptop:gap-y-10'>
-          <div className='flex laptop:flex-col mobile:gap-x-4 laptop:gap-x-0 laptop:justify-center laptop:items-center gap-y-4 w-full'>
-            <span className='w-14 h-14'>
-              <Brand fill={twcolor.white} />
-            </span>
-            <div className='font-medium text-xl text-center'>
-              <span className='mobile:hidden laptop:block'>
-                Esa Bahari Perkasa
-              </span>
-              <div className='mobile:flex flex-col items-start laptop:hidden'>
-                <span>
-                  Esa Bahari
-                </span>
-                <span>
-                  Perkasa
-                </span>
-              </div>
-            </div>
-          </div>
-          <ul className='flex laptop:justify-center gap-x-10 laptop:items-center text-neutral-400 mobile:flex-col laptop:flex-row mobile:gap-y-4 laptop:gap-y-0 mobile:py-8 laptop:py-0'>
-            <li className='hover:text-white transition-all duration-150'><a href="./">Home</a></li>
-            <li className='hover:text-white transition-all duration-150'><a href="./services">Services</a></li>
-            <li className='hover:text-white transition-all duration-150'><a href="./about">About</a></li>
-            <li className='hover:text-white transition-all duration-150'><a href="./contact">Contact</a></li>
-          </ul>
-          <div className='w-full flex flex-col gap-y-4 text-neutral-400'>
-            <hr className='border h-auto w-full border-neutral-500' />
-            <div className='w-full flex laptop:flex-row laptop:justify-between laptop:items-center mobile:flex-col-reverse mobile:gap-y-4 laptop:gap-y-0'>
-              <span className='text-sm'>
-                © 2022 xxidbr9. All rights reserved.
-              </span>
-              <div className='flex flex-row gap-x-2'>
-                <AiOutlineInstagram size={24} />
-                <GrLinkedinOption size={24} />
-                <AiFillFacebook size={24} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-}
 
 const ButtonArrow = ({ text, color, ...props }) => {
 
@@ -381,7 +314,7 @@ const CardService = ({ title, children, id, ...props }) => {
 
 const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
   return (
-    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden' + " " + props.className} >
+    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden ' + props.className} >
       <motion.div className='bg-black absolute w-full h-full overflow-hidden'
         style={{
           zIndex: 5 * id
