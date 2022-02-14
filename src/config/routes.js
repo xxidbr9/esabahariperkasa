@@ -1,6 +1,6 @@
 import { pathPrefix } from "../../gatsby-config"
 
-const isGithub = process.env.IS_GITHUB || false
+const isGithub = process.env.GATSBY_ENV === "github"
 const prefix = isGithub ? pathPrefix : ""
 const routes = {
   HOME: prefix + "/",

@@ -7,7 +7,7 @@ on:
     branches: [ master ]
     
 env:
-  IS_GITHUB: true
+  GATSBY_ENV: "gitbub"
 
 jobs:
   build:
