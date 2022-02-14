@@ -7,7 +7,7 @@ on:
     branches: [ master ]
     
 env:
-  GATSBY_ENV: "gitbub"
+  GATSBY_ENV: "github"
 
 jobs:
   build:
