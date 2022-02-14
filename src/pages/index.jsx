@@ -173,7 +173,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className=' laptop:block laptop:absolute w-full laptop:mt-[400px]'>
-              <div className='laptop:grid grid-cols-6 content-center w-full'>
+              <div className='laptop:container laptop:grid grid-cols-6 content-center'>
                 <div className="col-start-2 col-span-3 bg-white laptop:p-9 flex flex-col gap-y-6">
                   <div className='mobile:hidden laptop:block'>
                     <BrandComp />
@@ -205,7 +205,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className='mobile:'>
+        <section className=''>
           <div className='mobile:px-4 mobile:py-10 laptop:py-0 laptop:px-0 laptop:container mx-auto laptop:grid grid-cols-12'>
             <div className='col-span-6 flex flex-col gap-y-8'>
               <div className='flex flex-col gap-y-3'>
@@ -290,6 +290,9 @@ const ListServices = () => {
       loop
       centeredSlides
       pagination={false}
+      autoplay={{
+        delay: 2500,
+      }}
     >
       {services.map((service, _index) => (
         <SwiperSlide key={_index}>

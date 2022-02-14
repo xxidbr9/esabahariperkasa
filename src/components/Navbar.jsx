@@ -6,12 +6,16 @@ import Menu from '../components/svg/Menu'
 import BrandComp from './BrandComp'
 import { motion } from 'framer-motion'
 import { useCallback } from 'react'
+import routes from '../config/routes'
 const Navbar = ({ isNavbarOpen, ...props }) => {
   const [isActive, setIsActive] = useState(isNavbarOpen || false)
   const [isTransition, setIsTransition] = useState(false)
 
   const { y } = useWindowScroll()
-
+  const url = typeof window !== 'undefined' ? window.location.href : '';
+  const path = url.split("/")
+  const lastPath = !!path[path.length - 1] ? path[path.length - 1] : path[path.length - 2]
+  console.log(lastPath)
   const _handleToggle = useCallback(() => {
     if (isActive) {
       window.document.body.classList.remove("overflow-hidden")
@@ -21,18 +25,22 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
     setIsActive(!isActive)
   }, [isActive])
 
+
   const _handleGoto = (e, href) => {
     e.preventDefault();
     href = href || e.target.href
     setIsTransition(true)
     setTimeout(() => {
-      setIsTransition(false)
+      window.scrollTo({ top: 0 })
       window.location.href = href
+      // setIsTransition(false)
     }, 1000)
   }
 
   const NavLink = ({ href, onClick, children, ...props }) => (
-    <li className='hover:text-blue-500 transition-all duration-150'><a className='active:text-blue-500 ' onClick={onClick} href={href}>{children}</a></li>
+    <li className='hover:text-blue-500 transition-all duration-150 flex flex-col items-center gap-y-2 '>
+      <a className={`active:text-blue-500 ${href === "/" + lastPath && "text-blue-500"} `} onClick={onClick} href={href}>{children}</a>
+    </li>
   )
 
   return (
@@ -59,9 +67,9 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
           <BrandComp onClick={_handleGoto} />
           <div data-id="menu" className='text-xl font-medium flex items-center gap-x-10'>
             <ul className='laptop:flex items-center gap-x-10 mobile:hidden'>
-              <NavLink onClick={_handleGoto} href="/service">Services</NavLink>
-              <NavLink onClick={_handleGoto} href="/about">About</NavLink>
-              <li><a onClick={_handleGoto} href="/contact" className='px-6 py-3 bg-neutral-800 rounded-full text-white'>Contact</a></li>
+              <NavLink onClick={_handleGoto} href={routes.SERVICE}>Services</NavLink>
+              <NavLink onClick={_handleGoto} href={routes.ABOUT}>About</NavLink>
+              <li><a onClick={_handleGoto} href={routes.CONTACT} className='px-6 py-3 bg-neutral-800 rounded-full text-white'>Contact</a></li>
             </ul>
             <button className='cursor-pointer flex justify-center items-center' onClick={_handleToggle}>
               <Menu fill={twcolor.neutral[800]} className="mobile:w-8 " active={isActive} />
