@@ -8,12 +8,14 @@ import twcolor from 'tailwindcss/colors'
 import BrandComp from '../components/BrandComp'
 import Brand from '../components/svg/Brand'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import withMainContext, { MainContext } from '../context/Main.context'
+import withMainContext, { CONSTANT, MainContext } from '../context/Main.context'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import useLoadHandler from '../hooks/useLoad'
 import Footer from '../components/Footer'
 import Overlay from '../components/Overlay'
+import listServices from '../data/listServices'
+import routes from '../config/routes'
 
 
 const DELAY = .5 * 2 + .8
@@ -22,10 +24,25 @@ const HomePage = () => {
   const [isDomLoaded, setIsDomLoaded] = useState(true) //  change to true
   const { onLoad, percentage, ref } = useLoadHandler()
   const [, setIsLoading] = useState(true)
+
+  const { state: { isChangePage }, dispatch } = useContext(MainContext)
+
+  const _handleGoto = (e) => {
+    e.preventDefault();
+    const href = e.target.href
+    dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: true })
+    setTimeout(() => {
+      window.scrollTo({ top: 0 })
+      window.location.href = href
+      dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: false })
+    }, 1000)
+  }
+
+
   const services = [
-    { id: 1, title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
-    { id: 2, title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },
-    { id: 3, title: "Contact", buttonText: "Contact Us", bgImage: "https://source.unsplash.com/random/hero_3", child: "Looking for an International container shipping companies to deliver your container?", }
+    { id: 1, href: routes.SERVICE, title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
+    { id: 2, href: routes.ABOUT, title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },
+    { id: 3, href: routes.CONTACT, title: "Contact", buttonText: "Contact Us", bgImage: "https://source.unsplash.com/random/hero_3", child: "Looking for an International container shipping companies to deliver your container?", }
   ]
 
   useEffect(() => {
@@ -63,7 +80,7 @@ const HomePage = () => {
       {isDomLoaded && <Loader />}
       {/* {isLoading && <Loader percentage={percentage} />} */}
 
-      <main className=''>
+      <main className='bg-white'>
         <Overlay className="bg-black">
           <div className='laptop:container mx-auto laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 relative bg-black' style={{
             zIndex: 1,
@@ -136,7 +153,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className='mobile:pt-20 laptop:pt-0'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} href={routes.SERVICE} onClick={_handleGoto} />
             </div>
           </div>
         </section>
@@ -151,6 +168,8 @@ const HomePage = () => {
               title={item.title}
               ref={ref}
               onLoad={onLoad}
+              onClick={_handleGoto}
+              href={item.href}
             >
               {item.child}
             </CardFeature>
@@ -169,7 +188,7 @@ const HomePage = () => {
                 <h1>And Certified Forwader</h1>
               </div>
               <div className='laptop:mt-72 mobile:hidden laptop:block'>
-                <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} />
+                <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={_handleGoto} />
               </div>
             </div>
             <div className=' laptop:block laptop:absolute w-full laptop:mt-[400px]'>
@@ -200,7 +219,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className='laptop:hidden mobile:block mobile:pt-6'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={_handleGoto} />
             </div>
           </div>
         </section>
@@ -215,14 +234,14 @@ const HomePage = () => {
                 </p>
               </div>
               <div className='mobile:hidden laptop:block'>
-                <ButtonArrow color={twcolor.neutral[800]} text={"All services"} />
+                <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={_handleGoto} />
               </div>
             </div>
           </div>
           <div className='laptop:mt-10'>
             <ListServices />
             <div className='laptop:hidden mobile:px-4 laptop:px-0 mx-auto mt-8'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"All services"} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={_handleGoto} />
             </div>
           </div>
         </section>
@@ -244,7 +263,7 @@ const HomePage = () => {
         </section>
       </main>
       <Footer />
-    </React.Fragment>
+    </React.Fragment >
   )
 }
 
@@ -260,12 +279,18 @@ const Loader = ({ percentage, ...props }) => {
 }
 
 
-const ButtonArrow = ({ text, color, ...props }) => {
+const ButtonArrow = ({ text, href, onClick, color, ...props }) => {
 
   return (
     <div className='mobile:pt-0 laptop:pt-10 text-xl font-medium flex items-center gap-x-4'>
-      <span style={{ color: color }}>{text}</span>
-      <ArrowBtn fill={color} />
+      <span style={{ color: color }}>
+        <a href={href} onClick={onClick} rel={text} >
+          {text}
+        </a>
+      </span>
+      <a href={href} onClick={onClick} rel={text} >
+        <ArrowBtn fill={color} />
+      </a>
     </div>
   )
 }
@@ -276,12 +301,6 @@ const ListServices = () => {
   const isMobile = (breakpoint === "mobile" || breakpoint === "tablet")
   const preview = isMobile ? 1.2 : 3
   const spaceBetween = isMobile ? 12 : 0
-
-  const services = [
-    { id: "1", title: "Ship Agency", },
-    { id: "2", title: "Ship Chandler/Provision", },
-    { id: "3", title: "Ship Chartering", },
-  ]
 
   return (
     <Swiper
@@ -294,7 +313,7 @@ const ListServices = () => {
         delay: 2500,
       }}
     >
-      {services.map((service, _index) => (
+      {listServices.map((service, _index) => (
         <SwiperSlide key={_index}>
           <CardService id={service.id} title={service.title} />
         </SwiperSlide>
@@ -315,7 +334,7 @@ const CardService = ({ title, children, id, ...props }) => {
   )
 }
 
-const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
+const CardFeature = forwardRef(({ id, href, onClick, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
   return (
     <div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden ' + props.className} >
       <motion.div className='bg-black absolute w-full h-full overflow-hidden right-0'
@@ -359,9 +378,13 @@ const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgIma
         </div>
         <div className='flex gap-x-4 items-center'>
           <span className='text-xl font-medium'>
-            {buttonText}
+            <a href={href} onClick={onClick} rel={buttonText} >
+              {buttonText}
+            </a>
           </span>
-          <ArrowBtn />
+          <a href={href} onClick={onClick} rel={buttonText} >
+            <ArrowBtn />
+          </a>
         </div>
       </div>
     </div>

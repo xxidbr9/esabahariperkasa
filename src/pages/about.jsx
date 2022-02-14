@@ -18,10 +18,10 @@ const AboutPage = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{BRAND_META_TITLE}</title>
+        <title>About | {BRAND_META_TITLE}</title>
       </Helmet>
       <Navbar />
-      <main>
+      <main className='bg-white'>
         <MainHero tags={tagLine} title={"About Us"}/>
       </main>
       <Footer />

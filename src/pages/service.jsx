@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar'
 import Overlay from '../components/Overlay'
 import BRAND_META_TITLE from '../constants/brand.constant'
 import withMainContext from '../context/Main.context'
+import listServices from '../data/listServices'
 
 
 const tagLine = [
@@ -19,13 +20,14 @@ const ServicePage = () => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>{BRAND_META_TITLE}</title>
+        <title>Services | {BRAND_META_TITLE}</title>
       </Helmet>
       <Navbar />
-      <main>
+      <main className='bg-white'>
         <MainHero tags={tagLine} title={"Our Services"} />
         <Slogan />
         <ListServices />
+        <MoreInfo />
       </main>
       <Footer />
     </React.Fragment>
@@ -127,42 +129,6 @@ const Slogan = ({ ...props }) => {
 }
 
 
-const list = [
-  {
-    id: "service_1",
-    title: "Ship Agency",
-    text: `With a proven track recording the shipping arena Esa Bahari Perkasa today is a trusted partner to many ship owners, charterers
-    and operators in the region.With a value added chain of strong
-    relationships with concerned authorities, be it ports or customs,
-    documentations and on-line accessibility, the manner of our
-    operations will assure you of our commitment to your business.`,
-    image: "https://source.unsplash.com/random/service_1"
-  },
-  {
-    id: "service_2",
-    title: "Ship Chandler Provision",
-    text: `We have an excellent infrastructure and are thus able to provide
-    you including, Full service marine supply. Deck stores, engine,cabin & bonded supplies. Fresh and frozen food and vegetables. Safety equipment`,
-    image: "https://source.unsplash.com/random/service_2"
-  },
-  {
-    id: "service_3",
-    title: "Ship Chartering",
-    text: `Being involved in all aspects of shipping and transport. Esa Bahari Perkasa is
-    also heavily engaged in vessel chartering for dry cargo.Our direct
-    and close contacts to ship owner around the world are essential in
-    our pursuit to find the right vessel in the right place at a competitive
-    price and we are always need to be in touch with the market to find
-    the most suitable and cost effective transport options for all
-    customers.`,
-    image: "https://source.unsplash.com/random/service_3"
-  }, {
-    id: "service_4",
-    title: "Freight Forwarding",
-    text: "Lagan delivery series for export and import businesses ort‘ne es tan to other trough soe an operation modes",
-    image: "https://source.unsplash.com/random/service_4"
-  }
-]
 
 const ListServices = ({ ...props }) => {
 
@@ -183,7 +149,7 @@ const ListServices = ({ ...props }) => {
           duration: 0.6
         }}
         className='col-span-1 flex flex-col laptop:gap-y-20 mobile:gap-y-8'>
-        {list.filter((service, index) => index === 0 || index % 2 === 0).map((service) => (
+        {listServices.filter((service, index) => index === 0 || index % 2 === 0).map((service) => (
           <CardService
             key={service.id}
             image={service.image}
@@ -205,7 +171,7 @@ const ListServices = ({ ...props }) => {
           duration: 0.6
         }}
         className='col-span-1 flex flex-col laptop:gap-y-20 mobile:gap-y-8'>
-        {list.filter((service, index) => index === 1 || index % 2 !== 0).map((service) => (
+        {listServices.filter((service, index) => index === 1 || index % 2 !== 0).map((service) => (
           <CardService
             key={service.id}
             image={service.image}
@@ -263,5 +229,13 @@ const CardService = ({ title, text, image, ...props }) => {
         </p>
       </div>
     </motion.div>
+  )
+}
+
+const MoreInfo = ({ ...props }) => {
+  return (
+    <div>
+      Hallo
+    </div>
   )
 }

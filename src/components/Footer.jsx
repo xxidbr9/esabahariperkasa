@@ -20,10 +20,6 @@ const Footer = () => {
     }, 1000)
   }
 
-  useEffect(() => {
-    console.log("from footer : ", isChangePage)
-  }, [isChangePage])
-
   const FootLink = ({ href, onClick, children, ...props }) => (
     <li className='hover:text-white transition-all duration-150'>
       <a onClick={onClick} href={href}>{children}</a>

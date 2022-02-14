@@ -48,9 +48,6 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
     </li>
   )
 
-  useEffect(() => {
-    console.log("from here : ", isChangePage)
-  }, [isChangePage])
 
   return (
     <React.Fragment>
