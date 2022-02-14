@@ -5,12 +5,14 @@ export const MainContext = createContext(null);
 
 const initState = {
   navbarHeight: 0,
-  screenType: ""
+  screenType: "",
+  isChangePage: false
 };
 
 export const CONSTANT = {
   SET_NAVBAR_HEIGHT: "NAVBAR_HEIGHT",
-  SET_SCREEN_TYPE: "SET_SCREEN_TYPE"
+  SET_SCREEN_TYPE: "SET_SCREEN_TYPE",
+  SET_IS_CHANGE_PAGE: 'SET_IS_CHANGE_PAGE'
 };
 
 const reducer = (state, action) => {
@@ -19,6 +21,8 @@ const reducer = (state, action) => {
       return { ...state, navbarHeight: action.payload };
     case CONSTANT.SET_SCREEN_TYPE:
       return { ...state, screenType: action.payload };
+    case CONSTANT.SET_IS_CHANGE_PAGE:
+      return { ...state, isChangePage: action.payload }
     default:
       return state;
   }

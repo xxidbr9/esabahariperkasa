@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Overlay from '../components/Overlay'
 import BRAND_META_TITLE from '../constants/brand.constant'
+import withMainContext from '../context/Main.context'
 
 
 const tagLine = [
@@ -28,7 +29,7 @@ const AboutPage = () => {
   )
 }
 
-export default AboutPage
+export default withMainContext(AboutPage)
 
 const MainHero = ({ tags, title, ...props }) => {
   return (

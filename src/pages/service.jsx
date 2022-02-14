@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion'
 import React from 'react'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Overlay from '../components/Overlay'
 import BRAND_META_TITLE from '../constants/brand.constant'
+import withMainContext from '../context/Main.context'
 
 
 const tagLine = [
@@ -32,7 +32,7 @@ const ServicePage = () => {
   )
 }
 
-export default ServicePage
+export default withMainContext(ServicePage)
 
 const MainHero = ({ tags, title, ...props }) => {
   return (
@@ -229,7 +229,7 @@ const CardService = ({ title, text, image, ...props }) => {
     },
   }
 
-  const scaleBase = 0.9
+  const scaleBase = 0.95
 
   return (
     <motion.div
@@ -248,7 +248,7 @@ const CardService = ({ title, text, image, ...props }) => {
           className='w-full h-full object-cover object-center absolute'
           {...baseConfig}
           whileHover={{
-            scale: 2.0 - scaleBase,
+            scale: 2.05 - scaleBase,
           }}
         />
         <img
@@ -258,7 +258,7 @@ const CardService = ({ title, text, image, ...props }) => {
       </motion.div>
       <div className='flex flex-col gap-y-1'>
         <h2 className='text-2xl font-medium'>{title}</h2>
-        <p className='text-base font-light'>
+        <p className='mobile:text-base font-light laptop:text-lg'>
           {text}
         </p>
       </div>

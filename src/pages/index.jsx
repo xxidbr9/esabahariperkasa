@@ -21,7 +21,7 @@ const DELAY = .5 * 2 + .8
 const HomePage = () => {
   const [isDomLoaded, setIsDomLoaded] = useState(true) //  change to true
   const { onLoad, percentage, ref } = useLoadHandler()
-  const [isLoading, setIsLoading] = useState(true)
+  const [, setIsLoading] = useState(true)
   const services = [
     { id: 1, title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
     { id: 2, title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },

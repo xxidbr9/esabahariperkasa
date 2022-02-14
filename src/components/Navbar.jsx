@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import { useWindowScroll } from 'react-use'
 import twcolor from 'tailwindcss/colors'
@@ -7,15 +7,17 @@ import BrandComp from './BrandComp'
 import { motion } from 'framer-motion'
 import { useCallback } from 'react'
 import routes from '../config/routes'
+import { CONSTANT, MainContext } from '../context/Main.context'
+import OverlayChange from './OverlayChange'
+
 const Navbar = ({ isNavbarOpen, ...props }) => {
   const [isActive, setIsActive] = useState(isNavbarOpen || false)
-  const [isTransition, setIsTransition] = useState(false)
 
   const { y } = useWindowScroll()
   const url = typeof window !== 'undefined' ? window.location.href : '';
   const path = url.split("/")
   const lastPath = !!path[path.length - 1] ? path[path.length - 1] : path[path.length - 2]
-  console.log(lastPath)
+
   const _handleToggle = useCallback(() => {
     if (isActive) {
       window.document.body.classList.remove("overflow-hidden")
@@ -25,17 +27,20 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
     setIsActive(!isActive)
   }, [isActive])
 
+  const { state: { isChangePage }, dispatch } = useContext(MainContext)
 
   const _handleGoto = (e, href) => {
     e.preventDefault();
     href = href || e.target.href
-    setIsTransition(true)
+    dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: true })
     setTimeout(() => {
       window.scrollTo({ top: 0 })
       window.location.href = href
-      // setIsTransition(false)
+      dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: false })
     }, 1000)
   }
+
+
 
   const NavLink = ({ href, onClick, children, ...props }) => (
     <li className='hover:text-blue-500 transition-all duration-150 flex flex-col items-center gap-y-2 '>
@@ -43,9 +48,13 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
     </li>
   )
 
+  useEffect(() => {
+    console.log("from here : ", isChangePage)
+  }, [isChangePage])
+
   return (
     <React.Fragment>
-      <OverlayChange isAnimate={isTransition} />
+      <OverlayChange isAnimate={isChangePage} />
       <nav className={`w-full fixed z-50 transition-all duration-150 ${y > 0 ? "bg-white shadow-lg" : ""}`} style={{
         zIndex: y > 0 ? 99 : 50
       }}>
@@ -82,45 +91,3 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
 }
 
 export default Navbar
-
-const OverlayChange = ({ isAnimate, ...props }) => {
-  return (
-    <React.Fragment>
-      <motion.div className={'fixed w-full h-full overflow-hidden py-0 bg-blue-500 bottom-0 ' + props.className}
-        style={{
-          zIndex: 999,
-        }}
-        initial={{
-          height: 100,
-        }}
-
-        animate={{
-          height: isAnimate ? "100%" : 0,
-        }}
-
-        transition={{
-          duration: .6
-        }}
-      />
-      <motion.div className={'fixed w-full h-full overflow-hidden py-0 bg-black bottom-0 ' + props.className}
-        style={{
-          zIndex: 999,
-        }}
-        initial={{
-          height: 0,
-        }}
-
-        animate={{
-          height: isAnimate ? "100%" : 0,
-        }}
-
-        transition={{
-          duration: .5,
-          delay: .25,
-        }}
-      >
-        {props.children}
-      </motion.div>
-    </React.Fragment>
-  )
-}
