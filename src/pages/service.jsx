@@ -9,7 +9,7 @@ import BRAND_META_TITLE from '../constants/brand.constant'
 
 const tagLine = [
   "We build relationships",
-  "Grow and foster connections with your customers",
+  "Provide the best Services",
   "And we think we’re pretty good at it"
 ]
 

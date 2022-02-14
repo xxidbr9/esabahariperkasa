@@ -31,11 +31,15 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
     }, 1000)
   }
 
+  const NavLink = ({ href, onClick, children, ...props }) => (
+    <li className='hover:text-blue-500 transition-all duration-150'><a className='active:text-blue-500 ' onClick={onClick} href={href}>{children}</a></li>
+  )
+
   return (
     <React.Fragment>
       <OverlayChange isAnimate={isTransition} />
       <nav className={`w-full fixed z-50 transition-all duration-150 ${y > 0 ? "bg-white shadow-lg" : ""}`} style={{
-        zIndex: y > 0 ? 99999 : 50
+        zIndex: y > 0 ? 99 : 50
       }}>
         <motion.div
           className={`absolute w-full bg-white`}
@@ -55,8 +59,8 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
           <BrandComp onClick={_handleGoto} />
           <div data-id="menu" className='text-xl font-medium flex items-center gap-x-10'>
             <ul className='laptop:flex items-center gap-x-10 mobile:hidden'>
-              <li><a onClick={_handleGoto} href="/service">Services</a></li>
-              <li><a onClick={_handleGoto} href="/about">About</a></li>
+              <NavLink onClick={_handleGoto} href="/service">Services</NavLink>
+              <NavLink onClick={_handleGoto} href="/about">About</NavLink>
               <li><a onClick={_handleGoto} href="/contact" className='px-6 py-3 bg-neutral-800 rounded-full text-white'>Contact</a></li>
             </ul>
             <button className='cursor-pointer flex justify-center items-center' onClick={_handleToggle}>
@@ -74,7 +78,7 @@ export default Navbar
 const OverlayChange = ({ isAnimate, ...props }) => {
   return (
     <React.Fragment>
-      <motion.div className={'absolute w-screen h-screen overflow-hidden py-0 bg-neutral-200 bottom-0 ' + props.className}
+      <motion.div className={'fixed w-full h-full overflow-hidden py-0 bg-blue-500 bottom-0 ' + props.className}
         style={{
           zIndex: 999,
         }}
@@ -83,16 +87,14 @@ const OverlayChange = ({ isAnimate, ...props }) => {
         }}
 
         animate={{
-          height: isAnimate ? "100vh" : 0
+          height: isAnimate ? "100%" : 0,
         }}
 
         transition={{
           duration: .6
         }}
-      >
-        {props.children}
-      </motion.div>
-      <motion.div className={'absolute w-screen h-screen overflow-hidden py-0 bg-black bottom-0 ' + props.className}
+      />
+      <motion.div className={'fixed w-full h-full overflow-hidden py-0 bg-black bottom-0 ' + props.className}
         style={{
           zIndex: 999,
         }}
@@ -101,7 +103,7 @@ const OverlayChange = ({ isAnimate, ...props }) => {
         }}
 
         animate={{
-          height: isAnimate ? "100vh" : 0
+          height: isAnimate ? "100%" : 0,
         }}
 
         transition={{

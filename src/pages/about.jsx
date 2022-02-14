@@ -8,9 +8,8 @@ import BRAND_META_TITLE from '../constants/brand.constant'
 
 
 const tagLine = [
-  "We build relationships",
-  "Grow and foster connections with your customers",
-  "And we think we’re pretty good at it"
+  "Proudly shipping around Indonesia",
+  "And also around the world"
 ]
 
 const AboutPage = () => {
@@ -53,7 +52,7 @@ const MainHero = ({ tags, title, ...props }) => {
                 }}
                 className='mobile:text-base laptop:text-xl text-white'>{title}</motion.h2>
             </div>
-            <div className='flex flex-col laptop:text-4xl mobile:text-2xl font-bold gap-y-2 '
+            <div className='flex flex-col laptop:text-5xl mobile:text-2xl font-bold gap-y-2 '
             >
               {tags.map((tag, index) => (
                 <div className='overflow-hidden' key={`motion_tag_${index}`}>
@@ -86,7 +85,7 @@ const MainHero = ({ tags, title, ...props }) => {
       >
         <div className='flex flex-col mobile:gap-y-2 laptop:gap-y-8 '>
           <span className='mobile:text-base laptop:text-xl'>{title}</span>
-          <div className='flex flex-col laptop:text-4xl mobile:text-2xl font-bold gap-y-2' >
+          <div className='flex flex-col laptop:text-5xl mobile:text-2xl font-bold gap-y-2' >
             {tags.map((tag, indx) => (
               <div className='overflow-hidden' key={`tag_${indx}`}>
                 <h1 className={`text-neutral-800`}>

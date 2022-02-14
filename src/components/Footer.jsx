@@ -41,9 +41,15 @@ const Footer = () => {
                 © 2022 xxidbr9. All rights reserved.
               </span>
               <div className='flex flex-row gap-x-2'>
-                <AiOutlineInstagram size={24} />
-                <GrLinkedinOption size={24} />
-                <AiFillFacebook size={24} />
+                <a rel="noreferrer" target='_blank' href='https://instagram.com/dailydevelopers'>
+                  <AiOutlineInstagram size={24} />
+                </a>
+                <a rel="noreferrer" target='_blank' href="https://linkedin.com/in/xxidbr9">
+                  <GrLinkedinOption size={24} />
+                </a>
+                <a rel="noreferrer" target='_blank' href="https://facebook.com/bernand.bad">
+                  <AiFillFacebook size={24} />
+                </a>
               </div>
             </div>
           </div>

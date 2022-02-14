@@ -314,8 +314,8 @@ const CardService = ({ title, children, id, ...props }) => {
 
 const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgImage, ...props }, ref) => {
   return (
-    <motion.div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden ' + props.className} >
-      <motion.div className='bg-black absolute w-full h-full overflow-hidden'
+    <div className={'w-full h-[50vh] object-cover bg-center relative overflow-hidden ' + props.className} >
+      <motion.div className='bg-black absolute w-full h-full overflow-hidden right-0'
         style={{
           zIndex: 5 * id
         }}
@@ -361,7 +361,7 @@ const CardFeature = forwardRef(({ id, title, children, buttonText, onLoad, bgIma
           <ArrowBtn />
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 })
 

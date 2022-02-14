@@ -9,7 +9,7 @@ const BrandComp = ({ onClick, ...props }) => {
   const _handleLogoClick = useCallback((e) => {
     const href = uriRef.current.href
     onClick(e, href)
-  }, [uriRef])
+  }, [uriRef, onClick])
 
   return (
     <a onClick={_handleLogoClick} ref={uriRef} href='/' data-id="brand" className='flex gap-x-4 items-center text-xl font-medium text-neutral-800 relative'>
