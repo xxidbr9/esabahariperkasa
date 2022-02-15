@@ -191,7 +191,7 @@ const HomePage = () => {
                 <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={_handleGoto} />
               </div>
             </div>
-            <div className=' laptop:block laptop:absolute w-full laptop:mt-[400px]'>
+            <div className='laptop:block laptop:absolute laptop:mt-[400px]'>
               <div className='laptop:container laptop:grid grid-cols-6 content-center'>
                 <div className="col-start-2 col-span-3 bg-white laptop:p-9 flex flex-col gap-y-6">
                   <div className='mobile:hidden laptop:block'>
