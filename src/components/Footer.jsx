@@ -16,7 +16,7 @@ const Footer = () => {
     setTimeout(() => {
       window.scrollTo({ top: 0 })
       window.location.href = href
-      dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: false })
+      // dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: false })
     }, 1000)
   }
 
