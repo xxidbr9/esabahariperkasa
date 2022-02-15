@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai'
 import { GrLinkedinOption } from 'react-icons/gr'
 import Brand from './svg/Brand'
@@ -7,7 +7,7 @@ import routes from '../config/routes'
 import { CONSTANT, MainContext } from '../context/Main.context'
 
 const Footer = () => {
-  const { state: { isChangePage }, dispatch } = useContext(MainContext)
+  const { dispatch } = useContext(MainContext)
 
   const _handleGoto = (e, href) => {
     e.preventDefault();

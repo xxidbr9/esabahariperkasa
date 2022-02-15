@@ -25,7 +25,7 @@ const HomePage = () => {
   const { onLoad, percentage, ref } = useLoadHandler()
   const [, setIsLoading] = useState(true)
 
-  const { state: { isChangePage }, dispatch } = useContext(MainContext)
+  const { dispatch } = useContext(MainContext)
 
   const _handleGoto = (e) => {
     e.preventDefault();
@@ -57,7 +57,7 @@ const HomePage = () => {
     if (isDomLoaded) {
       setTimeout(() => {
         window.document.body.classList.remove("overflow-hidden")
-      }, DELAY * 1000)
+      }, DELAY * 1800)
     }
   }, [isDomLoaded])
 

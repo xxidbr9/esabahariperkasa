@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import { useWindowScroll } from 'react-use'
 import twcolor from 'tailwindcss/colors'
