@@ -224,8 +224,8 @@ const CardService = ({ title, text, image, ...props }) => {
           className='w-full h-full object-cover object-center' />
       </motion.div>
       <div className='flex flex-col gap-y-1'>
-        <h2 className='text-2xl font-medium'>{title}</h2>
-        <p className='mobile:text-base font-light laptop:text-lg'>
+        <h2 className='laptop:text-2xl font-medium mobile:text-lg'>{title}</h2>
+        <p className='mobile:text-base laptop:font-light laptop:text-lg text-neutral-600'>
           {text}
         </p>
       </div>

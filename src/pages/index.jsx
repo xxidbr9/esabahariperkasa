@@ -25,6 +25,7 @@ import bannerContact from '../assets/images/contact_banner.jpeg'
 
 import aboutSection from '../assets/images/about_section.jpeg'
 import bottomHome from '../assets/images/bottom_home.jpeg'
+import ButtonArrow from '../components/ButtonArrow'
 
 
 const DELAY = .5 * 2 + .8
@@ -242,7 +243,7 @@ const HomePage = () => {
                       </div>
                     </div>
                   </div>
-                  <p className='text-lg'>
+                  <p className='laptop:text-lg mobile:text-base text-neutral-600'>
                     Since starting our operations in Indonesia in <b>June 4, 2021</b>, PT Esa Bahari Perkasa has established a strong foothold in the local shipping and logistics industries through our partnership with two long-standing alliances.
                   </p>
                 </div>
@@ -259,7 +260,7 @@ const HomePage = () => {
             <div className='col-span-6 flex flex-col gap-y-8'>
               <div className='flex flex-col gap-y-3'>
                 <h1 className='laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>What we do?</h1>
-                <p className='laptop:text-lg'>
+                <p className='laptop:text-lg text-neutral-600'>
                   We believes that it is essential to act with integrity in all its activities, to treat all its employees and customers in a fair and respectful manner. The company aims to remain the first choice of its customers.
                 </p>
               </div>
@@ -304,23 +305,6 @@ const Loader = ({ percentage, ...props }) => {
   return (
     <div className='flex items-center justify-center text-white font-medium text-lg bg-black absolute w-screen h-screen' style={{ zIndex: 99 }}>
       Loading {percentage !== null ? `${percentage}%` : "..."}
-    </div>
-  )
-}
-
-
-const ButtonArrow = ({ text, href, onClick, color, ...props }) => {
-
-  return (
-    <div className='mobile:pt-0 laptop:pt-10 text-xl font-medium flex items-center gap-x-4'>
-      <span style={{ color: color }}>
-        <a href={href} onClick={onClick} rel={text} >
-          {text}
-        </a>
-      </span>
-      <a href={href} onClick={onClick} rel={text} >
-        <ArrowBtn fill={color} />
-      </a>
     </div>
   )
 }
