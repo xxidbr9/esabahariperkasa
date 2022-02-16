@@ -18,6 +18,15 @@ import listServices from '../data/listServices'
 import routes from '../config/routes'
 
 
+// Image here
+import bannerService from '../assets/images/service_banner.jpeg'
+import bannerAbout from '../assets/images/about_banner.jpeg'
+import bannerContact from '../assets/images/contact_banner.jpeg'
+
+import aboutSection from '../assets/images/about_section.jpeg'
+import bottomHome from '../assets/images/bottom_home.jpeg'
+
+
 const DELAY = .5 * 2 + .8
 
 const HomePage = () => {
@@ -27,9 +36,9 @@ const HomePage = () => {
 
   const { dispatch } = useContext(MainContext)
 
-  const _handleGoto = (e) => {
+  const _handleGoto = (e, href) => {
     e.preventDefault();
-    const href = e.target.href
+    href = e.target.href || href
     dispatch({ type: CONSTANT.SET_IS_CHANGE_PAGE, payload: true })
     setTimeout(() => {
       window.scrollTo({ top: 0 })
@@ -40,9 +49,30 @@ const HomePage = () => {
 
 
   const services = [
-    { id: 1, href: routes.SERVICE, title: "Our Services", buttonText: "See All Services", bgImage: "https://source.unsplash.com/random/hero_1", child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.", },
-    { id: 2, href: routes.ABOUT, title: "About", buttonText: "More About Us", bgImage: "https://source.unsplash.com/random/hero_2", child: "A World Leading Shipping and Logistics Company" },
-    { id: 3, href: routes.CONTACT, title: "Contact", buttonText: "Contact Us", bgImage: "https://source.unsplash.com/random/hero_3", child: "Looking for an International container shipping companies to deliver your container?", }
+    {
+      id: 1,
+      href: routes.SERVICE,
+      title: "Our Services",
+      buttonText: "See All Services",
+      bgImage: bannerService,
+      child: "Despite the size and diversity of our services, our simple, effective, people focused approach never waivers.",
+    },
+    {
+      id: 2,
+      href: routes.ABOUT,
+      title: "About",
+      buttonText: "More About Us",
+      bgImage: bannerAbout,
+      child: "A World Leading Shipping and Logistics Company"
+    },
+    {
+      id: 3,
+      href: routes.CONTACT,
+      title: "Contact",
+      buttonText: "Contact Us",
+      bgImage: bannerContact,
+      child: "Looking for an International container shipping companies to deliver your container?",
+    }
   ]
 
   useEffect(() => {
@@ -153,7 +183,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className='mobile:pt-20 laptop:pt-0'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} href={routes.SERVICE} onClick={_handleGoto} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"More Info"} href={routes.SERVICE} onClick={(e) => _handleGoto(e, routes.SERVICE)} />
             </div>
           </div>
         </section>
@@ -168,7 +198,7 @@ const HomePage = () => {
               title={item.title}
               ref={ref}
               onLoad={onLoad}
-              onClick={_handleGoto}
+              onClick={(e) => _handleGoto(e, item.href)}
               href={item.href}
             >
               {item.child}
@@ -179,7 +209,7 @@ const HomePage = () => {
 
         <section className=''>
           <div className='laptop:grid laptop:grid-cols-12 laptop:container mx-auto laptop:py-20 mobile:py-10 gap-x-5 mobile:px-4 laptop:px-0'>
-            <img src={`https://source.unsplash.com/random/2`} className='col-span-6 h-[920px] bg-cover w-full mobile:hidden object-cover laptop:block' alt='about' />
+            <img src={aboutSection} className='col-span-6 h-[920px] bg-cover w-full mobile:hidden object-cover laptop:block' alt='about' />
             <div className='col-span-6 py-10 '>
               <div className='flex flex-col laptop:gap-y-6 mobile:gap-y-1 laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>
                 <h1>Profesional</h1>
@@ -188,7 +218,7 @@ const HomePage = () => {
                 <h1>And Certified Forwader</h1>
               </div>
               <div className='laptop:mt-72 mobile:hidden laptop:block'>
-                <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={_handleGoto} />
+                <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={(e) => _handleGoto(e, routes.ABOUT)} />
               </div>
             </div>
             <div className='laptop:block laptop:absolute laptop:mt-[400px]'>
@@ -213,13 +243,13 @@ const HomePage = () => {
                     </div>
                   </div>
                   <p className='text-lg'>
-                    Since starting our operations in Indonesia in <b><i>"date"</i></b>, PT Esa Bahari Perkasa has established a strong foothold in the local shipping and logistics industries through our partnership with two long-standing alliances.
+                    Since starting our operations in Indonesia in <b>June 4, 2021</b>, PT Esa Bahari Perkasa has established a strong foothold in the local shipping and logistics industries through our partnership with two long-standing alliances.
                   </p>
                 </div>
               </div>
             </div>
             <div className='laptop:hidden mobile:block mobile:pt-6'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={_handleGoto} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"More About Us"} href={routes.ABOUT} onClick={e => _handleGoto(e, routes.ABOUT)} />
             </div>
           </div>
         </section>
@@ -234,21 +264,21 @@ const HomePage = () => {
                 </p>
               </div>
               <div className='mobile:hidden laptop:block'>
-                <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={_handleGoto} />
+                <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={e => _handleGoto(e, routes.SERVICE)} />
               </div>
             </div>
           </div>
           <div className='laptop:mt-10'>
             <ListServices />
             <div className='laptop:hidden mobile:px-4 laptop:px-0 mx-auto mt-8'>
-              <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={_handleGoto} />
+              <ButtonArrow color={twcolor.neutral[800]} text={"All services"} href={routes.SERVICE} onClick={e => _handleGoto(e, routes.SERVICE)} />
             </div>
           </div>
         </section>
         <section>
           <div className="h-screen bg-cover w-full" style={{
             background:
-              "linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(https://source.unsplash.com/random/gradient_1)",
+              `linear-gradient(180deg, #FFFFFF 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url(${bottomHome})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
           }}>
@@ -263,7 +293,7 @@ const HomePage = () => {
         </section>
       </main>
       <Footer />
-    </React.Fragment >
+    </React.Fragment>
   )
 }
 
@@ -378,11 +408,11 @@ const CardFeature = forwardRef(({ id, href, onClick, title, children, buttonText
         </div>
         <div className='flex gap-x-4 items-center'>
           <span className='text-xl font-medium'>
-            <a href={href} onClick={onClick} rel={buttonText} >
+            <a href={href} onClick={onClick} rel={buttonText}>
               {buttonText}
             </a>
           </span>
-          <a href={href} onClick={onClick} rel={buttonText} >
+          <a href={href} onClick={onClick} rel={buttonText}>
             <ArrowBtn />
           </a>
         </div>

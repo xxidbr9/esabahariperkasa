@@ -7,6 +7,7 @@ import Overlay from '../components/Overlay'
 import BRAND_META_TITLE from '../constants/brand.constant'
 import withMainContext from '../context/Main.context'
 import listServices from '../data/listServices'
+import MoreInfo from '../components/MoreInfo'
 
 
 const tagLine = [
@@ -133,7 +134,7 @@ const Slogan = ({ ...props }) => {
 const ListServices = ({ ...props }) => {
 
   return (
-    <div
+    <section
       className='laptop:py-10 mx-auto grid laptop:grid-cols-2 mobile:grid-cols-1 w-full laptop:gap-x-20 laptop:container mobile:px-4 laptop:px-0 mobile:gap-y-8'>
       <motion.div
         initial={{
@@ -179,7 +180,7 @@ const ListServices = ({ ...props }) => {
             title={service.title} />
         ))}
       </motion.div>
-    </div>
+    </section>
   )
 }
 
@@ -220,7 +221,7 @@ const CardService = ({ title, text, image, ...props }) => {
         <img
           src={image}
           alt={title}
-          className='w-full h-full object-cover object-center bg-purple-300' />
+          className='w-full h-full object-cover object-center' />
       </motion.div>
       <div className='flex flex-col gap-y-1'>
         <h2 className='text-2xl font-medium'>{title}</h2>
@@ -232,10 +233,3 @@ const CardService = ({ title, text, image, ...props }) => {
   )
 }
 
-const MoreInfo = ({ ...props }) => {
-  return (
-    <div>
-      Hallo
-    </div>
-  )
-}
