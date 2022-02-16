@@ -28,6 +28,9 @@ const ServicePage = () => {
         <MainHero tags={tagLine} title={"Our Services"} />
         <Slogan />
         <ListServices />
+        <div className='laptop:mt-20'>
+          <hr />
+        </div>
         <MoreInfo />
       </main>
       <Footer />

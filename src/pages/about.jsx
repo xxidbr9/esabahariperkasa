@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import Footer from '../components/Footer'
+import MoreInfo from '../components/MoreInfo'
 import Navbar from '../components/Navbar'
 import Overlay from '../components/Overlay'
 import BRAND_META_TITLE from '../constants/brand.constant'
@@ -22,7 +23,11 @@ const AboutPage = () => {
       </Helmet>
       <Navbar />
       <main className='bg-white'>
-        <MainHero tags={tagLine} title={"About Us"}/>
+        <MainHero tags={tagLine} title={"About Us"} />
+        <div className='laptop:mt-20'>
+          <hr />
+        </div>
+        <MoreInfo />
       </main>
       <Footer />
     </React.Fragment>
@@ -97,8 +102,7 @@ const MainHero = ({ tags, title, ...props }) => {
           </div>
         </div>
       </section>
-      <hr />
-      <section className='h-screen'></section>
+      {/* <hr /> */}
     </React.Fragment>
   )
 }

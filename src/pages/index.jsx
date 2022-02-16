@@ -26,6 +26,7 @@ import bannerContact from '../assets/images/contact_banner.jpeg'
 import aboutSection from '../assets/images/about_section.jpeg'
 import bottomHome from '../assets/images/bottom_home.jpeg'
 import ButtonArrow from '../components/ButtonArrow'
+import MoreInfo from '../components/MoreInfo'
 
 
 const DELAY = .5 * 2 + .8
@@ -256,7 +257,7 @@ const HomePage = () => {
         </section>
 
         <section className=''>
-          <div className='mobile:px-4 mobile:py-10 laptop:py-0 laptop:px-0 laptop:container mx-auto laptop:grid grid-cols-12'>
+          <div className='mobile:px-4 mobile:py-10 laptop:py-0  laptop:px-0 laptop:container mx-auto laptop:grid grid-cols-12'>
             <div className='col-span-6 flex flex-col gap-y-8'>
               <div className='flex flex-col gap-y-3'>
                 <h1 className='laptop:text-6xl font-bold text-neutral-800 mobile:text-2xl'>What we do?</h1>
@@ -276,6 +277,12 @@ const HomePage = () => {
             </div>
           </div>
         </section>
+
+        <div className='laptop:mt-20'>
+          <hr  />
+        </div>
+        <MoreInfo />
+
         <section>
           <div className="h-screen bg-cover w-full" style={{
             background:
@@ -383,7 +390,7 @@ const CardFeature = forwardRef(({ id, href, onClick, title, children, buttonText
       />
       <div className='absolute overflow-hidden bg-neutral-800 w-full h-full bg-opacity-60 laptop:p-10 mobile:px-4 mobile:py-12 text-white flex flex-col laptop:justify-between laptop:gap-0 mobile:gap-y-8'>
         <div className='flex flex-col gap-y-3'>
-          <span className='text-xl'>
+          <span className='laptop:text-xl'>
             {title}
           </span>
           <span className='laptop:text-[32px] font-medium mobile:text-2xl mobile:leading-normal'>

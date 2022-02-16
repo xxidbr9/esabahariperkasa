@@ -19,14 +19,6 @@ const MoreInfo = ({ ...props }) => {
     }, 1000)
   }
 
-  // return (
-  // <div className='laptop:container mx-auto mobile:px-4 laptop:px-0 laptop:py-20 mobile:py-5'>
-  //   <h1 className='laptop:text-4xl mobile:text-xl laptop:font-light'>Need to know Us more?</h1>
-  //   <div className='laptop:mt-10 mobile:mt-4 mobile:w-full h-auto mobile:flex mobile:flex-col laptop:block'>
-  //     <a onClick={_handleGoto} href={routes.CONTACT} className='text-center px-6 py-3 text-xl w-full bg-neutral-800 rounded-full text-white'>Contact Us</a>
-  //   </div>
-  // </div>
-  // )
   return (
     <div className="laptop:container mx-auto mobile:px-4 laptop:px-0 laptop:py-20 mobile:py-10">
       <div className='flex flex-col gap-y-3'>
@@ -37,8 +29,8 @@ const MoreInfo = ({ ...props }) => {
         <div className='laptop:mt-10 mobile:mt-4 mobile:w-full h-auto mobile:flex mobile:flex-col laptop:block'>
           <ButtonArrow
             color={twcolor.neutral[800]}
-            text={"Contact Us"} href={routes.SERVICE}
-            onClick={(e) => _handleGoto(e, routes.SERVICE)} />
+            text={"Contact Us"} href={routes.CONTACT}
+            onClick={(e) => _handleGoto(e, routes.CONTACT)} />
         </div>
       </div>
     </div>
