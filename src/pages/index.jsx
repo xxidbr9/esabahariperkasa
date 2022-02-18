@@ -29,6 +29,7 @@ import aboutSection from "../assets/images/about_section.jpeg";
 import bottomHome from "../assets/images/bottom_home.jpeg";
 import ButtonArrow from "../components/ButtonArrow";
 import MoreInfo from "../components/MoreInfo";
+import styled from '@emotion/styled'
 
 const DELAY = 0.5 * 2 + 0.8;
 
@@ -162,7 +163,8 @@ const HomePage = () => {
           data-id='hero'
           className='laptop:container mx-auto h-[50vh] laptop:pt-44  mobile:pt-36 laptop:block mobile:px-4 laptop:px-0 bg-white relative'
           style={{
-            zIndex: 10
+            zIndex: 10,
+            minHeight: "440px",
           }}>
           <div className='flex flex-col'>
             <div className='flex flex-col laptop:text-6xl mobile:text-2xl font-bold gap-y-3 '>
@@ -226,7 +228,7 @@ const HomePage = () => {
                 />
               </div>
             </div>
-            <div className='laptop:block laptop:absolute laptop:mt-[400px]'>
+            <StyledDivAbsolute className='laptop:block laptop:absolute laptop:mt-[400px]'>
               <div className='laptop:container laptop:grid grid-cols-6 content-center'>
                 <div className='col-start-2 col-span-3 bg-white laptop:p-9 flex flex-col gap-y-6'>
                   <div className='mobile:hidden laptop:block'>
@@ -255,7 +257,7 @@ const HomePage = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </StyledDivAbsolute>
             <div className='laptop:hidden mobile:block mobile:pt-6'>
               <ButtonArrow
                 color={twcolor.neutral[800]}
@@ -334,6 +336,12 @@ const HomePage = () => {
   );
 };
 
+const StyledDivAbsolute = styled.div`
+  @media screen and (max-height: 600px), screen (min-height: 500px){
+    margin-top:500px;
+  }
+`
+
 const Loader = ({ percentage, ...props }) => {
   return (
     <div
@@ -402,7 +410,11 @@ const CardFeature = forwardRef(
         className={
           "w-full h-[50vh] object-cover bg-center relative overflow-hidden " +
           props.className
-        }>
+        }
+        style={{
+          minHeight: "520px",
+        }}
+      >
         <motion.div
           className='bg-black absolute w-full h-full overflow-hidden right-0'
           style={{
