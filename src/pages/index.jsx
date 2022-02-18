@@ -238,10 +238,9 @@ const HomePage = () => {
                     <div
                       data-id='brand'
                       className='flex gap-x-4 items-center text-xl font-medium text-neutral-800'>
-                      <Brand
-                        fill={twcolor.neutral[800]}
-                        className='w-14 h-14'
-                      />
+                      <span className="w-14 h-14">
+                        <Brand fill={twcolor.white} />
+                      </span>
                       <div className='flex-col flex'>
                         <span>Esa Bahari</span>
                         <span>Perkasa</span>

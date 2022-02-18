@@ -90,7 +90,7 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
                 About
               </NavLink>
               <li>
-                <a onClick={_handleGoto} href={routes.CONTACT}>
+                <a className="bg-black py-3 px-5 rounded-full text-white flex items-center justify-center" onClick={_handleGoto} href={routes.CONTACT}>
                   Contact
                 </a>
               </li>
