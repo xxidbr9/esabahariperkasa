@@ -1,0 +1,22 @@
+{
+  "main.js": "render-page.js",
+  "render-page.js.map": "render-page.js.map",
+  "static/about_banner.jpeg": "static/about_banner-3f5b9446e7718751cd341d25b774cf3c.jpeg",
+  "static/about_section.jpeg": "static/about_section-fc36df6010cacf7f5d42194e5e4257d2.jpeg",
+  "static/bottom_home.jpeg": "static/bottom_home-bcb352e5b46d776fffd45f48250b13f0.jpeg",
+  "static/bunkering_service.jpg": "static/bunkering_service-da58d6a2c71c4637d5cb1bcdac80b088.jpg",
+  "static/contact_banner.jpeg": "static/contact_banner-551e6291af00fa7a5b685ad2f80cd4fd.jpeg",
+  "static/docking.jpg": "static/docking-82f415c5fe3611ac9f92e3bd17f2c948.jpg",
+  "static/electrical_service.jpg": "static/electrical_service-e6fb8a1510cceec2734a9790813564cf.jpg",
+  "static/f80738e0-07bd-4bfd-ada1-6493f892043a.jpeg": "static/f80738e0-07bd-4bfd-ada1-6493f892043a-9a003f8fdab50b56ba4d65853ace5ec6.jpeg",
+  "static/foreign_forwading.jpg": "static/foreign_forwading-47a74983c94be720a72040e3feeaca74.jpg",
+  "static/layup.jpg": "static/layup-b2dbaa466453de8bc777d65dd5b63df6.jpg",
+  "static/port_capitan.jpg": "static/port_capitan-c28fc7c868a8664f1f3ca438ee7fdad9.jpg",
+  "static/service_banner.jpeg": "static/service_banner-cab1de08701741e0dada875dd8271b4f.jpeg",
+  "static/ship_agency.jpg": "static/ship_agency-840bc1f2eddcde79979771394917bc28.jpg",
+  "static/ship_chandler.jpg": "static/ship_chandler-3d0ae606980dd9471ac23065ce7e9f1f.jpg",
+  "static/ship_chartering.jpg": "static/ship_chartering-5fb9dbe8d60e1d2fd508742cd34ef8ac.jpg",
+  "static/ship_maintenace.jpg": "static/ship_maintenace-1b472d13077fa630169e672334891518.jpg",
+  "static/ship_repair.jpg": "static/ship_repair-da58d6a2c71c4637d5cb1bcdac80b088.jpg",
+  "static/tank_clean.jpg": "static/tank_clean-ec0a9130b95d4bed4711f9ee37873f01.jpg"
+}
