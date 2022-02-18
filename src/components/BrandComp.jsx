@@ -13,7 +13,7 @@ const BrandComp = ({ onClick, ...props }) => {
   }, [uriRef, onClick])
 
   return (
-    <a onClick={_handleLogoClick} ref={uriRef} href={routes.HOME} data-id="brand" className='flex gap-x-4 items-center text-xl font-medium text-neutral-800 relative'>
+    <a onClick={_handleLogoClick} ref={uriRef} href={routes.HOME} data-id="brand" className='flex gap-x-4 items-center text-xl font-medium text-neutral-800 relative'>      
       <Brand fill={twcolor.neutral[800]}
         className='laptop:w-14 mobile:w-8 mobile:h-8 laptop:h-14'
       />
