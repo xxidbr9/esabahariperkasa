@@ -43,7 +43,6 @@ const Navbar = ({ isNavbarOpen, ...props }) => {
       window.location.href = href;
     }, 1000);
   };
-  console.log({ lastPath });
   const NavLink = ({ href, onClick, children, ...props }) => (
     <li className="hover:text-blue-500 transition-all duration-150 flex flex-col items-center gap-y-2 ">
       <a
