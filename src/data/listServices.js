@@ -1,7 +1,6 @@
 import service1 from '../assets/images/services/ship_agency.jpg'
 import service2 from '../assets/images/services/ship_chandler.jpg'
 import service3 from '../assets/images/services/ship_chartering.jpg'
-import service4 from "../assets/images/services/foreign_forwading.jpg"
 import service5 from "../assets/images/services/port_capitan.jpg"
 import service6 from "../assets/images/services/layup.jpg"
 import service7 from "../assets/images/services/bunkering_service.jpg"
@@ -40,11 +39,6 @@ const listServices = [
     the most suitable and cost effective transport options for all
     customers.`,
     image: service3
-  }, {
-    id: "service_4",
-    title: "Freight Forwarding",
-    text: "Lagan delivery series for export and import businesses ort‘ne es tan to other trough soe an operation modes",
-    image: service4
   }, {
     id: "service_5",
     title: "Port Captain",

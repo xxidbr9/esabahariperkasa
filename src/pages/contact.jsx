@@ -127,11 +127,8 @@ const Contact = () => {
           <Item name={"Bpk. Eko Rudy Santoso"} >
             +62 812-6827-3114
           </Item>
-          <Item name={"Bpk. Roy Hutahean"} >
-            +62 813-1033-5046
-          </Item>
-          <Item name={"Bpk. Idham Maulana"} >
-            +62 813 7807 4996
+          <Item name={"Bpk. Wahyudi"} >
+            +62 812-4489-3244
           </Item>
           <Item name={"Bpk. Idham Maulana"} >
             +62 813 7807 4996

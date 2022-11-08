@@ -193,11 +193,8 @@ const MenuList = ({ onClick, isActive, ...props }) => {
                   <ItemNav name={"Bpk. Eko Rudy Santoso"}>
                     +62 812-6827-3114
                   </ItemNav>
-                  <ItemNav name={"Bpk. Roy Hutahean"}>
-                    +62 813-1033-5046
-                  </ItemNav>
-                  <ItemNav name={"Bpk. Idham Maulana"}>
-                    +62 813 7807 4996
+                  <ItemNav name={"Bpk. Wahyudi"}>
+                    +62 812-4489-3244
                   </ItemNav>
                   <ItemNav name={"Bpk. Idham Maulana"}>
                     +62 813 7807 4996
